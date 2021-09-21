@@ -3,8 +3,9 @@ package com.moodanalyzer;
 public class MoodAnalyzer {
 	String message;
 	
-	public static void main(String[] args) {
-		MoodAnalyzer mood = new MoodAnalyzer();
+	
+	public static void main(String[] args) throws MoodAnalyzerException {
+		MoodAnalyzer mood = new MoodAnalyzer("This is sad message");
 		System.out.println(mood.analyseMood());
 	}
 	
@@ -16,7 +17,7 @@ public class MoodAnalyzer {
 		this.message = message;
 	}
 	
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalyzerException{
 		try {
 			if(message.contains(("sad"))){
 				return "SAD";
@@ -24,7 +25,7 @@ public class MoodAnalyzer {
 				return "HAPPY";
 			}
 		}catch(NullPointerException e) {
-			return "HAPPY";
+			return "NULL";
 		}
 	}
 }

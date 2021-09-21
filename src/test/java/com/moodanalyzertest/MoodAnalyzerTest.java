@@ -4,6 +4,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import com.moodanalyzer.MoodAnalyzer;
+import com.moodanalyzer.MoodAnalyzerException;
 
 import junit.framework.Assert;
 
@@ -11,22 +12,34 @@ public class MoodAnalyzerTest {
 	
 	@Test
 	public void sadCheck() {
-		MoodAnalyzer moodAnalyzer = new MoodAnalyzer("this is sad message");
-		String message = moodAnalyzer.analyseMood();
-		Assert.assertEquals(message, "SAD");
+		try {
+			MoodAnalyzer moodAnalyzer = new MoodAnalyzer("this is sad message");
+			String message = moodAnalyzer.analyseMood();
+			Assert.assertEquals(message, "SAD");
+		}catch(MoodAnalyzerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void happyCheck() {
-		MoodAnalyzer moodAnalyzer = new MoodAnalyzer("this is happy message");
-		String message = moodAnalyzer.analyseMood();
-		Assert.assertEquals(message, "HAPPY");
+		try {
+			MoodAnalyzer moodAnalyzer = new MoodAnalyzer("this is happy message");
+			String message = moodAnalyzer.analyseMood();
+			Assert.assertEquals(message, "HAPPY");
+		}catch(MoodAnalyzerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	public void nullCheck() {
-		MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-		String message = moodAnalyzer.analyseMood();
-		Assert.assertEquals(message, "HAPPY");
+		try {
+			MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
+			String message = moodAnalyzer.analyseMood();
+			
+		}catch(MoodAnalyzerException e) {
+			Assert.assertEquals(e.getMessage(), "NULL");
+		}
 	}
 }
